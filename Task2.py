@@ -18,28 +18,51 @@ class Stack:
         return len(self.items)
 
 
-def rpn(calc):
+def operation(operator, num, num2):
     calculation = 0
+    if operator == "+":
+        calculation = num2+num
+        print("Addition")
+    elif operator == "-":
+        calculation = num2-num
+        print("Subtraction")
+    elif operator == "*":
+        calculation = num2*num
+        print("Multiplication")
+    elif operator == "/":
+        calculation = num2/num
+        print("Division")
+    return calculation
+
+
+def RPNr(calc):
     operator = calc.pop()
     num = int(calc.pop())
     if len(calc.items) > 1:
-        num2 = rpn(calc)
+        num2 = RPNr(calc)
     else:
         num2 = int(calc.pop())
+    return operation(operator, num, num2)
 
-    if operator == "+":
-        calculation = num2+num
-    elif operator == "-":
-        calculation = num2-num
-    elif operator == "*":
-        calculation = num2*num
-    elif operator == "/":
-        calculation = num2/num
-    return calculation
+
+def RPNi(calc):
+    store = Stack()
+    for x in range(calc.size()):
+        store.push(calc.pop())
+    while not store.isEmpty():
+        if store.peek() == '+' or store.peek() == '-' or store.peek() == '*' or store.peek() == '/':
+            num = float(calc.pop())
+            num2 = float(calc.pop())
+            operator = store.pop()
+            calc.push(operation(operator, num, num2))
+            print(calc.items)
+        else:
+            calc.push(store.pop())
+            print(calc.items)
 
 
 user = Stack()
 userInput = raw_input("Enter a calculation in RPN\n").split(" ")
 for i in userInput:
     user.push(i)
-print(" = %d" % (rpn(user)))
+RPNi(user)
