@@ -8,4 +8,6 @@ def prime(n):
                 arr.remove(i)
     return arr
 
-print(prime(100))
+
+UserInput = input("Enter a number to find all the prime number up to it\n")
+print("Prime Numbers: \n%s" % prime(UserInput))
