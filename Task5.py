@@ -50,6 +50,3 @@ def sqrt(n):
         y = float(n/n1)
         n1 = float((y+n1)/2)
     return n1
-
-
-print(sqrt(98294319819198198938982.13919132398239982))
