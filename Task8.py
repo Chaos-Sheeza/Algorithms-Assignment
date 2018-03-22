@@ -15,3 +15,5 @@ def cos(x):
         num5 = num3/num4
         res = res + num5
     return res
+
+print()
