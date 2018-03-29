@@ -35,6 +35,13 @@ def operation(operator, num, num2):
     return calculation
 
 
+def check(num):
+    if num == "+" or num == "-" or num == "*" or num == "/":
+        return False
+    else:
+        return True
+
+
 def RPNr(calc):
     operator = calc.pop()
     num = int(calc.pop())
@@ -59,10 +66,15 @@ def RPNi(calc):
         else:
             calc.push(store.pop())
             print(calc.items)
+    if calc.size() > 1:
+        print("Syntax error")
 
 
 user = Stack()
 userInput = raw_input("Enter a calculation in RPN\n").split(" ")
 for i in userInput:
     user.push(i)
-RPNi(user)
+try:
+    RPNi(user)
+except:
+    print("Syntax error")
