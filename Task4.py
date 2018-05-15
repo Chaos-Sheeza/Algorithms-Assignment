@@ -1,3 +1,4 @@
+# Class for nodes. Contains the value, and the right and left variables will store other nodes.
 class Node:
     def __init__(self, x=None):
         self.value = x
@@ -5,10 +6,15 @@ class Node:
         self.right = None
 
 
+# Class that builds a binary search tree.
 class BST:
     def __init__(self):
         self.root = None
 
+    # Insert method uses a private insert method so that the root node is set, and the private method adds the rest of
+    # the nodes to it. If the root is set then it will call the private function, and if the value is smaller then it
+    # will create a new node on the left and if larger on the right. If the node to be created is already occupied, then
+    #  it recursively calls the method using the occupied node as the root.
     def insert(self, x):
         if self.root is None:
             self.root = Node(x)
@@ -27,6 +33,9 @@ class BST:
             else:
                 self.pInsert(x,node.right)
 
+    # The display method should also be recursive, using the next node to print, as the root each time (First all the
+    # left then all the right nodes).
+    # If conditions used to display empty nodes as well.
     def display(self):
         if self.root is not None:
             self.pDisplay(self.root)
@@ -45,8 +54,7 @@ class BST:
             self.pDisplay(node.right)
 
 
-
-arr = [5,4,6,3,9,1,2,8,7,10,11,-1]
+arr = [5, 4, 6, 3, 9, 1, 2, 8, 7, 10, 11, -1]
 test = BST()
 for i in arr:
     Node(i)
